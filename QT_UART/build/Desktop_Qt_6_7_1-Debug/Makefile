@@ -1700,10 +1700,13 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/qrubberband.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/qframe.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtCore/qabstractitemmodel.h \
+		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/QLabel \
+		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/qlabel.h \
+		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtGui/qpicture.h \
+		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtGui/qtextdocument.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/QLineEdit \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/qlineedit.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtGui/qtextcursor.h \
-		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtGui/qtextdocument.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtGui/qtextformat.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtGui/qpen.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtGui/qtextoption.h \
@@ -1719,6 +1722,7 @@ mainwindow.o: ../../mainwindow.cpp ../../mainwindow.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/QPushButton \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/qpushbutton.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/qabstractbutton.h \
+		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/QSlider \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/QStatusBar \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/qstatusbar.h \
 		/home/alaziuk/Qt/6.7.1/gcc_64/include/QtWidgets/QWidget

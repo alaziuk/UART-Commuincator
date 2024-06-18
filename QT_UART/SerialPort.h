@@ -9,15 +9,16 @@ class SerialPort : public QObject
     Q_OBJECT
 public:
     explicit SerialPort(QObject *parent = nullptr);
-
     bool connect(QString portName);
-
+    bool disconnect();
     qint64 write(QByteArray data);
-
+    QByteArray getMessage();
+    void setMessage(int value);
     ~SerialPort();
 private:
     QSerialPort *_serialPort;
-    QByteArray buffer;
+    QByteArray rx_buffer;
+    QByteArray tx_buffer;
 
 signals:
     void dataRecieved(QByteArray b);

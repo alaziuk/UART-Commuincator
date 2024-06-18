@@ -13,7 +13,6 @@ MainWindow::MainWindow(QWidget *parent)
 MainWindow::~MainWindow()
 {
     delete ui;
-
 }
 
 void MainWindow::loadPorts()
@@ -29,6 +28,8 @@ void MainWindow::on_btnOpenPort_clicked()
     if (!isConnected) {
         QMessageBox::critical(this, "Error", "There is a problem connecting to a port");
     } else {
+        ui->btnClosePort->setEnabled(true);
+        ui->btnSend->setEnabled(true);
         QMessageBox::information(this, "Information", "Port was opened succesfully");
     }
 }
@@ -36,7 +37,7 @@ void MainWindow::on_btnOpenPort_clicked()
 
 void MainWindow::on_btnSend_clicked()
 {
-    auto numBytes = _port.write(ui->lnMessage->text().toUtf8());
+    auto numBytes = _port.write(_port.getMessage());
     if (numBytes == -1) {
         QMessageBox::critical(this, "Error", "Something went wrong");
     } else {
@@ -49,3 +50,19 @@ void MainWindow::readData(QByteArray data)
     ui->lstMessages->addItem(data);
 }
 
+void MainWindow::on_btnClosePort_clicked()
+{
+    auto isDisconnected = _port.disconnect();
+    if (!isDisconnected) {
+        QMessageBox::critical(this, "Error", "There is a problem disconnecting from a port");
+    } else {
+        ui->btnClosePort->setEnabled(false);
+        ui->btnSend->setEnabled(false);
+        QMessageBox::information(this, "Information", "Port was closed succesfully");
+    }
+}
+void MainWindow::on_sldrPercentage_valueChanged(int value)
+{
+    ui->lblSliderValue->setText(QString::number(value));
+    _port.setMessage(value);
+}

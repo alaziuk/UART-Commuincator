@@ -3,7 +3,8 @@
 SerialPort::SerialPort(QObject *parent)
     : QObject{parent}
     , _serialPort(nullptr)
-    , buffer(QByteArray())
+    , rx_buffer(QByteArray())
+    , tx_buffer(QByteArray())
 {
 
 }
@@ -14,7 +15,6 @@ SerialPort::~SerialPort() {
         delete _serialPort;
     }
 }
-
 
 bool SerialPort::connect(QString portName) {
     if (_serialPort != nullptr) {
@@ -36,17 +36,26 @@ bool SerialPort::connect(QString portName) {
     return _serialPort->isOpen();
 }
 
+bool SerialPort::disconnect() {
+    if (_serialPort != nullptr) {
+        _serialPort->close();
+        delete _serialPort;
+    }
+    _serialPort = nullptr;
+    return true;
+}
+
 void SerialPort::dataReady() {
     if (_serialPort->isOpen()) {
         while(_serialPort->canReadLine()) {
             QByteArray line = _serialPort->readLine();
             if (!line.isEmpty()) {
-                buffer.append(line);
+                rx_buffer.append(line);
 
-                if (buffer.endsWith('\n') || buffer.endsWith('r')) {
-                    emit dataRecieved(buffer);
+                if (rx_buffer.endsWith('\n') || rx_buffer.endsWith('r')) {
+                    emit dataRecieved(rx_buffer);
 
-                    buffer.clear();
+                    rx_buffer.clear();
                 }
             }
         }
@@ -58,4 +67,28 @@ qint64 SerialPort::write(QByteArray data) {
         return -1;
     }
     return _serialPort->write(data);;
+}
+
+QByteArray SerialPort::getMessage() {
+    return tx_buffer;
+}
+
+void SerialPort::setMessage(int value) {
+    tx_buffer.clear();
+
+    tx_buffer.append("AT");
+    if (value == 100) {
+        tx_buffer.append(QString::number(value).toUtf8());
+        return;
+    }
+
+    if (value < 100 && value >= 10) {
+        tx_buffer.append("0");
+        tx_buffer.append(QString::number(value).toUtf8());
+        return;
+    }
+
+    tx_buffer.append("00");
+    tx_buffer.append(QString::number(value).toUtf8());
+    return;
 }

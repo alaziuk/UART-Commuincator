@@ -23,10 +23,10 @@ public:
 
 private slots:
     void on_btnOpenPort_clicked();
-
     void on_btnSend_clicked();
-
     void readData(QByteArray data);
+    void on_btnClosePort_clicked();
+    void on_sldrPercentage_valueChanged(int value);
 
 private:
     Ui::MainWindow *ui;
