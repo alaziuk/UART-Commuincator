@@ -28,9 +28,15 @@ private slots:
     void on_btnClosePort_clicked();
     void on_sldrPercentage_valueChanged(int value);
 
+    void on_btnCommsType_clicked();
+
+    void on_btnAskType_clicked();
+
 private:
     Ui::MainWindow *ui;
     SerialPort _port;
     void loadPorts();
+    void loadTypes();
+    void enableWidgets(bool open);
 };
 #endif // MAINWINDOW_H

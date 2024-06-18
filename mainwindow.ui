@@ -96,6 +96,9 @@
     </property>
    </widget>
    <widget class="QLabel" name="lblSliderValue">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -105,7 +108,52 @@
      </rect>
     </property>
     <property name="text">
-     <string/>
+     <string>0</string>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="cmbCommsType">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>190</y>
+      <width>241</width>
+      <height>24</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnCommsType">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>300</x>
+      <y>190</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply type</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="btnAskType">
+    <property name="enabled">
+     <bool>false</bool>
+    </property>
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>220</y>
+      <width>80</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>What type</string>
     </property>
    </widget>
   </widget>

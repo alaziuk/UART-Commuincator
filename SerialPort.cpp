@@ -3,8 +3,8 @@
 SerialPort::SerialPort(QObject *parent)
     : QObject{parent}
     , _serialPort(nullptr)
-    , rx_buffer(QByteArray())
-    , tx_buffer(QByteArray())
+    , rxBuffer(QByteArray())
+    , txBufferSpeed(QByteArray())
 {
 
 }
@@ -50,12 +50,12 @@ void SerialPort::dataReady() {
         while(_serialPort->canReadLine()) {
             QByteArray line = _serialPort->readLine();
             if (!line.isEmpty()) {
-                rx_buffer.append(line);
+                rxBuffer.append(line);
 
-                if (rx_buffer.endsWith('\n') || rx_buffer.endsWith('r')) {
-                    emit dataRecieved(rx_buffer);
+                if (rxBuffer.endsWith('\n') || rxBuffer.endsWith('r')) {
+                    emit dataRecieved(rxBuffer);
 
-                    rx_buffer.clear();
+                    rxBuffer.clear();
                 }
             }
         }
@@ -69,26 +69,55 @@ qint64 SerialPort::write(QByteArray data) {
     return _serialPort->write(data);;
 }
 
-QByteArray SerialPort::getMessage() {
-    return tx_buffer;
+QByteArray SerialPort::getSpeed() {
+    return txBufferSpeed;
 }
 
-void SerialPort::setMessage(int value) {
-    tx_buffer.clear();
+void SerialPort::setSpeed(int value) {
+    txBufferSpeed.clear();
 
-    tx_buffer.append("AT");
+    txBufferSpeed.append("AT");
     if (value == 100) {
-        tx_buffer.append(QString::number(value).toUtf8());
+        txBufferSpeed.append(QString::number(value).toUtf8());
         return;
     }
 
     if (value < 100 && value >= 10) {
-        tx_buffer.append("0");
-        tx_buffer.append(QString::number(value).toUtf8());
+        txBufferSpeed.append("0");
+        txBufferSpeed.append(QString::number(value).toUtf8());
         return;
     }
 
-    tx_buffer.append("00");
-    tx_buffer.append(QString::number(value).toUtf8());
+    txBufferSpeed.append("00");
+    txBufferSpeed.append(QString::number(value).toUtf8());
     return;
+}
+
+QByteArray SerialPort::getType() {
+    return txBufferCommsType;
+}
+
+void SerialPort::setType(QString value) {
+    txBufferCommsType.clear();
+
+    txBufferCommsType.append("AT");
+    if (value == "None") {
+        txBufferCommsType.append("NON");
+        return;
+    }
+
+    if (value == "PWM") {
+        txBufferCommsType.append("PWM");
+        return;
+    }
+
+    if (value == "CAN") {
+        txBufferCommsType.append("CAN");
+        return;
+    }
+
+    if (value == "WHT") {
+        txBufferCommsType.append("WHT");
+        return;
+    }
 }

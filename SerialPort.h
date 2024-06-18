@@ -12,13 +12,16 @@ public:
     bool connect(QString portName);
     bool disconnect();
     qint64 write(QByteArray data);
-    QByteArray getMessage();
-    void setMessage(int value);
+    QByteArray getSpeed();
+    QByteArray getType();
+    void setSpeed(int value);
+    void setType(QString value);
     ~SerialPort();
 private:
     QSerialPort *_serialPort;
-    QByteArray rx_buffer;
-    QByteArray tx_buffer;
+    QByteArray rxBuffer;
+    QByteArray txBufferSpeed;
+    QByteArray txBufferCommsType;
 
 signals:
     void dataRecieved(QByteArray b);
