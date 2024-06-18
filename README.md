@@ -4,7 +4,7 @@ A simple GUI application written in C++ using Qt. It's purpose is to commuinicat
 
 The project sends 5-byte message for example "AT010" which means 10% of nominal speed. "AT" is the beggining of the command and following "xyz" mean a number. The command in application itself is capped at 100.
 
-You can choose between no signal, PWM and CAN from corresponding dropbox in gui. It sends message similar to speed control:
+You can choose how board you're connected with will commuinicate with other boards. You have choice between no signal, PWM and CAN in corresponding dropbox in gui. It sends message similar to speed control:
 - "ATNON" for no signal,
 - "ATPWM" for PWM communication,
 - "ATCAN" for CAN communication.
