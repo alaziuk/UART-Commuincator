@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
     loadPorts();
     loadTypes();
+    setWindowTitle("Motor Control");
+    setFixedSize(QSize(694, 328));
     connect(&_port, &SerialPort::dataRecieved, this, &MainWindow::readData);
 }
 

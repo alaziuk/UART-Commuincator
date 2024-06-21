@@ -153,7 +153,7 @@
      </rect>
     </property>
     <property name="text">
-     <string>What type</string>
+     <string>Ask</string>
     </property>
    </widget>
   </widget>
